@@ -1,0 +1,12 @@
+services:
+  app:
+    container_name: ${CONTAINER_NAME}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    ports:
+      - '${HOST_PORT}:8030'
+    working_dir: /app
+    command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8030", "--reload"]
